@@ -1,12 +1,13 @@
 import sys
+import pickle
 
-file_name = "todo_data.txt"
+file_name = "todo_pickle_data.txt"
 todos = []
 
 # Read File
 try:
-    file = open(file_name, "r")
-    todos = file.readlines()
+    file = open(file_name, "rb")
+    todos = pickle.load(file)
     file.close()
 except:
     pass
@@ -34,8 +35,8 @@ if len(sys.argv) >= 3 and sys.argv[1].lower() == "remove":
 #print(todos)
 
 # Save File
-file = open(file_name, "w")
-file.writelines(todos)
+file = open(file_name, "wb")
+pickle.dump(todos, file)
 file.close()
 
 # Print List
